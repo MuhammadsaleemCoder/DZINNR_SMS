@@ -1,8 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function Sidebar({ items, role }) {
   return (
-    <div className="h-screen w-1/5 border-r border-slate-200 flex flex-col justify-between">
+    <div className="h-screen w-1/6 border-r border-slate-200 flex flex-col justify-between">
       <div className="p-2 h-[10%]  ">
         <div className="flex gap-3 p-4">
           <img src="/images/logo.png" alt="" className=" w-10" />
@@ -18,13 +19,14 @@ function Sidebar({ items, role }) {
 
       <div className="w-full flex flex-col items-center h-[80%] mt-1 ">
         {items.map((item, idx) => (
-          <div
+          <NavLink
+            to={item.path}
             key={idx}
             className="flex items-center gap-3 text-gray-700 p-5 font-medium w-[90%] hover:bg-slate-100 hover:text-blue-700 rounded-lg"
           >
             <i className={item.icon}></i>
             <p className="">{item.title}</p>
-          </div>
+          </NavLink>
         ))}
       </div>
       <div className="h-[10%] flex items-center  justify-center">

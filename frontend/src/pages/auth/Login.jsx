@@ -29,7 +29,7 @@ export default function Login() {
       console.log(res.data);
       setMsg(res.data.message);
       setTimeout(() => {
-        navigate("/dashboard");
+        navigate("/admin/dashboard");
       }, 1000);
     } catch (error) {
       console.log(error);
