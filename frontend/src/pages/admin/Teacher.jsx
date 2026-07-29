@@ -13,11 +13,14 @@ const data = [
   { value: 0 },
 ];
 function Teacher() {
+  const [teacher, setTeacher] = useState([]);
   const [count, setCount] = useState(0);
   const getData = async () => {
     try {
       const res = await api.get("/admin/teachers");
       setCount(res.data.count);
+      setTeacher(res.data.teacher);
+      console.log(res.data.teacher);
     } catch (error) {
       console.log("error to fetching data from admin/teacher");
     }
@@ -25,6 +28,7 @@ function Teacher() {
   useEffect(() => {
     getData();
     console.log(count);
+    console.log(teacher);
   }, []);
   return (
     <div className="">
@@ -50,27 +54,37 @@ function Teacher() {
         />
       </div>
 
-      <div className=" w-[80%]">
+      <div className=" w-[80%] mt-4 rounded-2xl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
         <table className="w-full">
-          <tr className=" h-12 bg-amber-300">
-            <th>#</th>
-            <th>Teacher</th>
-            <th>Department</th>
-            <th>Subject</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-          <tr className=" h-12 bg-amber-300">
-            <td>1</td>
-            <td>teacher</td>
-            <td>department</td>
-            <td>subject</td>
-            <td>email</td>
-            <td>status</td>
-            <td>action</td>
-          </tr>
+          <thead className=" h-12 ">
+            <tr>
+              <th className="rounded-tl-lg  bg-gray-200 text-center">#</th>
+              <th className=" bg-gray-200 text-left">Teacher</th>
+              <th className=" bg-gray-200   text-left">Department</th>
+              <th className=" bg-gray-200  text-left">Subject</th>
+              <th className=" bg-gray-200  text-left">Email</th>
+              <th className=" bg-gray-200  text-left">Phone</th>
+              <th className=" bg-gray-200  text-left">Status</th>
+              <th className="rounded-tr-lg bg-gray-200 text-left">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {teacher.map((val) => (
+              <tr
+                className=" h-12 w-full border-b  border-b-gray-300 p-8"
+                key={val._id}
+              >
+                <td className="text-center px-3">1</td>
+                <td className="">{val.user.name}</td>
+                <td>{val.department}</td>
+                <td>{val.subject}</td>
+                <td>{val.user.email}</td>
+                <td>{val.phone}</td>
+                <td>{val.status} Active</td>
+                <td>edit</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

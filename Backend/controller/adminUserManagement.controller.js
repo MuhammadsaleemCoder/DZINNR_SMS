@@ -65,7 +65,8 @@ export const createTeacher = async (req, res) => {
 
 export const getTeacher = async (req, res) => {
   try {
-    const teacher = await Teacher.find();
+    const teacher = await Teacher.find().populate("user");
+    console.log(teacher);
 
     res.status(200).json({ success: true, count: teacher.length, teacher });
   } catch (error) {
