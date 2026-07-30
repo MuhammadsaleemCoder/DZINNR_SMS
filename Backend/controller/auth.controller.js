@@ -5,7 +5,6 @@ import jwt from "jsonwebtoken";
 export const loginUser = async (req, res) => {
   try {
     const { email, password, role } = req.body;
-    console.log(req.body);
     const user = await User.findOne({ email });
     if (!user) {
       return res
@@ -20,10 +19,13 @@ export const loginUser = async (req, res) => {
         .json({ success: false, message: "invalid password or email" });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "7d",
-    });
-
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "7d",
+      },
+    );
     res.status(200).json({
       success: true,
       message: "user login successfully",

@@ -2,11 +2,13 @@ import React from "react";
 import TotalStudents from "./TotalStudents";
 import Teacher from "./Teacher";
 import Class from "./Class";
+import TeacherCard from "./TeacherCard";
+import StudentCard from "./StudentCard";
 
 function Dashboard() {
   return (
     <div>
-      <div className="shadow-[0_4px_10px_rgba(0,0,0,.2)] bg-white p-4 rounded w-full h-24 mt-10 justify-between items-center flex ">
+      <div className="border border-gray-300 bg-white p-4 rounded w-full h-24 mt-10 justify-between items-center flex ">
         <div className="">
           <h1 className="text-2xl font-semibold">Welcome Back, Admin!</h1>
           <p className="text-[12px]">
@@ -25,8 +27,8 @@ function Dashboard() {
         </div>
       </div>
       <div className="flex gap-4">
-        <TotalStudents />
-        <Teacher />
+        <TeacherCard />
+        <StudentCard />
         <Class />
       </div>
     </div>

@@ -13,8 +13,10 @@ export const createTeacher = async (req, res) => {
       phone,
       department,
       subject,
+
       qualification,
       experience,
+      status,
       img,
     } = req.body;
 
@@ -41,6 +43,7 @@ export const createTeacher = async (req, res) => {
       subject,
       qualification,
       experience,
+      status,
       img,
     });
 
@@ -65,10 +68,9 @@ export const createTeacher = async (req, res) => {
 
 export const getTeacher = async (req, res) => {
   try {
-    const teacher = await Teacher.find().populate("user");
-    console.log(teacher);
+    const teachers = await Teacher.find().populate("user");
 
-    res.status(200).json({ success: true, count: teacher.length, teacher });
+    res.status(200).json({ success: true, count: teachers.length, teachers });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -96,6 +98,7 @@ export const createStudent = async (req, res) => {
       classes,
       section,
       admissionDate,
+      status,
     } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -113,6 +116,7 @@ export const createStudent = async (req, res) => {
     });
 
     const newStudent = await Student.create({
+      user: newUser._id,
       phone,
       rollNumber,
       gender,
@@ -124,6 +128,7 @@ export const createStudent = async (req, res) => {
       classes,
       section,
       admissionDate,
+      status,
     });
 
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
@@ -142,8 +147,9 @@ export const createStudent = async (req, res) => {
 
 export const getStudents = async (req, res) => {
   try {
-    const student = await Student.find();
-    res.status(200).json({ success: true, count: student.length, student });
+    const students = await Student.find().populate("user");
+    console.log(students);
+    res.status(200).json({ success: true, count: students.length, students });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

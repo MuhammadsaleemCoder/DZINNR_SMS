@@ -49,6 +49,19 @@ const studentSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  status: {
+    type: String,
+    required: true,
+    enum: [
+      "Active",
+      "Inactive",
+      "Suspended",
+      "Graduated",
+      "Transferred",
+      "Dropped",
+    ],
+  },
+
   createdAt: Date,
   updatedAt: Date,
 });

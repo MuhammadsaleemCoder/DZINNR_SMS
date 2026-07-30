@@ -26,6 +26,11 @@ const teacherSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["Active", "Inactive", "On Leave"],
+      default: "Active",
+    },
     img: {
       url: String,
     },

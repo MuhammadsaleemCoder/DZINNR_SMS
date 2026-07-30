@@ -11,7 +11,7 @@ export const seederAdmin = async () => {
         name: "saleem",
         email: process.env.ADMIN_EMAIL,
         password: hashPassword,
-        role: "process.env.ADMIN",
+        role: process.env.ROLE,
       });
       console.log("Admin created successfully");
     } else {

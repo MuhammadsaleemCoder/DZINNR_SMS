@@ -2,7 +2,7 @@ import React from "react";
 
 function Card({ count, icon, chart, name, iconBox }) {
   return (
-    <div className="bg-white h-36 w-56 mt-8 shadow-[0_4px_10px_rgba(0,0,0,.2)] p-4">
+    <div className="bg-white h-36 w-56 mt-8  p-4 rounded-lg border border-gray-300">
       <div className="  flex items-center  justify-center gap-4 ">
         <div className={iconBox}>
           <i className={icon}></i>

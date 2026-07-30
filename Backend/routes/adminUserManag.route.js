@@ -8,9 +8,9 @@ import {
   getStudents,
 } from "../controller/adminUserManagement.controller.js";
 
-router.post("/createTeacher", createTeacher);
+router.post("/teachers", createTeacher);
 router.get("/teachers", getTeacher);
-router.post("/createStudent", createStudent);
+router.post("/students", createStudent);
 router.get("/students", getStudents);
 
 export default router;
