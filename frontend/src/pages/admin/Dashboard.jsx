@@ -1,9 +1,9 @@
 import React from "react";
 import TotalStudents from "./TotalStudents";
 import Teacher from "./Teacher";
-import Class from "./Class";
 import TeacherCard from "./TeacherCard";
 import StudentCard from "./StudentCard";
+import ClassCard from "./ClassCard";
 
 function Dashboard() {
   return (
@@ -29,7 +29,7 @@ function Dashboard() {
       <div className="flex gap-4">
         <TeacherCard />
         <StudentCard />
-        <Class />
+        <ClassCard />
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LeftSide from "../../components/auth/LeftSide";
+import api from "../../../api/axios";
 export default function Login() {
   const [selectedRole, setSelectedRole] = useState("Student");
   const [formData, setFromData] = useState({ email: "", password: "" });
@@ -20,7 +21,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/login", {
+      const res = await api.post("/auth/login", {
         role: selectedRole,
         email: formData.email,
         password: formData.password,
@@ -29,7 +30,11 @@ export default function Login() {
       console.log(res.data);
       setMsg(res.data.message);
       setTimeout(() => {
-        navigate("/admin/dashboard");
+        if (res.data.user.role === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          console.log("access denied");
+        }
       }, 1000);
     } catch (error) {
       console.log(error);

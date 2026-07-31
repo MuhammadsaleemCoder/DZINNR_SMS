@@ -1,6 +1,6 @@
 import Class from "../model/classes.model.js";
 import Teacher from "../model/teacher.model.js";
-import Student from "../model/teacher.model.js";
+import Student from "../model/student.model.js";
 
 export const createClass = async (req, res) => {
   try {
@@ -9,7 +9,7 @@ export const createClass = async (req, res) => {
     if (!classTeacherId || !studentsId) {
       return res
         .status(400)
-        .json({ success: false, message: "teacher not found  " });
+        .json({ success: false, message: "field are required " });
     }
 
     const teacherId = await Teacher.findById(classTeacherId);
@@ -18,17 +18,17 @@ export const createClass = async (req, res) => {
         .status(400)
         .json({ success: false, message: "teacher not found" });
     }
-    const studentId = await Teacher.findById(studentsId);
-    if (!student) {
+    const studentId = await Student.findById(studentsId);
+    if (!studentId) {
       return res
         .status(400)
-        .json({ success: false, message: "Field are required" });
+        .json({ success: false, message: "Student not found" });
     }
     const newClass = await Class.create({
       className,
       section,
       classTeacher: classTeacherId,
-      students: studentsId,
+      student: studentsId,
       subject,
     });
 
@@ -44,8 +44,10 @@ export const createClass = async (req, res) => {
 
 export const getClass = async (req, res) => {
   try {
-    const classes = await Class.find();
-    res.status(200).json({ success: true, count: classes.length });
+    const classes = await Class.find()
+      .populate({ path: "classTeacher", populate: { path: "user" } })
+      .populate({ path: "student", populate: { path: "user" } });
+    res.status(200).json({ success: true, count: classes.length, classes });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

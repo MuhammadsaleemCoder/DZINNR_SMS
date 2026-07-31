@@ -14,10 +14,11 @@ const classSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Teacher",
     },
-    students: {
+    student: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Student",
     },
+
     subject: {
       type: String,
       required: true,

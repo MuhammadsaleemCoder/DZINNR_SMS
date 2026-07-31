@@ -7,10 +7,12 @@ import {
   createStudent,
   getStudents,
 } from "../controller/adminUserManagement.controller.js";
+import { protect } from "../middlewares/protect.middleware.js";
+import { authorized } from "../middlewares/authorizedUser.middlewares.js";
 
-router.post("/teachers", createTeacher);
-router.get("/teachers", getTeacher);
-router.post("/students", createStudent);
-router.get("/students", getStudents);
+router.post("/teachers", protect, authorized("admin"), createTeacher);
+router.get("/teachers", protect, authorized("admin"), getTeacher);
+router.post("/students", protect, authorized("admin"), createStudent);
+router.get("/students", protect, authorized("admin"), getStudents);
 
 export default router;
