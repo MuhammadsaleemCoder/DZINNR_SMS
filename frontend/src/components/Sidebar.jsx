@@ -40,7 +40,7 @@ function Sidebar({ items, role }) {
           </div>
           <div>
             <p className="font-semibold">{role}</p>
-            <p className="text-gray-500 text-sm">Super Administrator</p>
+            <p className="text-gray-500 text-sm">{} role</p>
           </div>
           <div>
             <i className="fa-solid fa-chevron-down text-xs"></i>

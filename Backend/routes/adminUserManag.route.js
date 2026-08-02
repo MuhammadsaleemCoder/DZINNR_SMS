@@ -14,5 +14,6 @@ router.post("/teachers", protect, authorized("admin"), createTeacher);
 router.get("/teachers", protect, authorized("admin"), getTeacher);
 router.post("/students", protect, authorized("admin"), createStudent);
 router.get("/students", protect, authorized("admin"), getStudents);
+router.get("/students", protect, authorized("admin"), getStudents);
 
 export default router;

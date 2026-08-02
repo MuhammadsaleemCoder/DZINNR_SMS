@@ -4,8 +4,7 @@ import Student from "../model/student.model.js";
 
 export const createClass = async (req, res) => {
   try {
-    const { className, section, classTeacherId, studentsId, subject } =
-      req.body;
+    const { classId, section, classTeacherId, studentsId, subject } = req.body;
     if (!classTeacherId || !studentsId) {
       return res
         .status(400)
@@ -25,7 +24,7 @@ export const createClass = async (req, res) => {
         .json({ success: false, message: "Student not found" });
     }
     const newClass = await Class.create({
-      className,
+      className: classId,
       section,
       classTeacher: classTeacherId,
       student: studentsId,
@@ -44,9 +43,11 @@ export const createClass = async (req, res) => {
 
 export const getClass = async (req, res) => {
   try {
-    const classes = await Class.find()
-      .populate({ path: "classTeacher", populate: { path: "user" } })
-      .populate({ path: "student", populate: { path: "user" } });
+    const classes = await Class.find().populate({
+      path: "classTeacher",
+      populate: { path: "user" },
+    });
+
     res.status(200).json({ success: true, count: classes.length, classes });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

@@ -1,9 +1,9 @@
 import React from "react";
-import { LineChart, Line } from "recharts";
 import Card from "../../components/Card";
 import api from "../../../api/axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { LineChart, Line } from "recharts";
 const data = [
   { value: 1 },
   { value: 3 },

@@ -20,6 +20,7 @@ function TotalStudents() {
       const res = await api.get("/admin/students");
 
       setStudents(res.data.students);
+      console.log(res.data);
     } catch (error) {
       console.log("error to fetching data from admin/students");
     }
@@ -64,7 +65,7 @@ function TotalStudents() {
                   <td className="">{student.user.name}</td>
                 </div>
                 <td>{student.rollNumber}</td>
-                <td>{student.classes}</td>
+                <td>{student.classes.className}</td>
                 <td className="">{student.section}</td>
                 <td>{student.dateOfBirth}</td>
 

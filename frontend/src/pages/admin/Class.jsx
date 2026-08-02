@@ -10,6 +10,7 @@ function Class() {
       const res = await api.get("/admin/class");
       setClasses(res.data.classes);
       setCount(res.data.count);
+      console.log(res.data);
       console.log(res.data.classes);
     } catch (error) {
       console.log("error to fetching data from admin/class");
@@ -47,7 +48,6 @@ function Class() {
                 <td className="">{val.section}</td>
                 <td className="">{val.classTeacher.user.name}</td>
                 <td className="">{val.subject}</td>
-                <td className="">{count}</td>
               </tr>
             ))}
           </tbody>

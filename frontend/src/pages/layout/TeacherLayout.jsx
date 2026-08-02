@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Navbar";
-
 const items = [
   {
     icon: "fa-solid fa-table-cells-large font-semibold text-2xl",
@@ -22,7 +21,7 @@ const items = [
   },
   {
     icon: "fa-solid  fa-book-open font-semibold text-2xl",
-    title: "Classes",
+    title: "My Classes",
     path: "classes",
   },
   {
@@ -33,19 +32,19 @@ const items = [
   {
     icon: "fa-solid fa-money-check-dollar font-semibold text-2xl",
     title: "Fees",
-    path: "admin/fees",
+    path: "fees",
   },
 ];
-function DashboardLayout() {
+function TeacherLayout() {
   return (
     <div className="flex">
-      <Sidebar items={items} role={"admin"} />
+      <Sidebar items={items} role={"teacher"} />
       <div className="flex-1 h-screen py-4 px-6 bg-slate-50">
-        <Navbar role={"admin"} items={items} />
+        <Navbar role={"teacher"} items={items} />
         <Outlet />
       </div>
     </div>
   );
 }
 
-export default DashboardLayout;
+export default TeacherLayout;

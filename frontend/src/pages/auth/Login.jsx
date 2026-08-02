@@ -32,8 +32,10 @@ export default function Login() {
       setTimeout(() => {
         if (res.data.user.role === "admin") {
           navigate("/admin/dashboard");
-        } else {
-          console.log("access denied");
+        } else if (res.data.user.role === "teacher") {
+          navigate("/teacher/dashboard");
+        } else if (res.data.user.role === "student") {
+          navigate("/Students/dashboard");
         }
       }, 1000);
     } catch (error) {

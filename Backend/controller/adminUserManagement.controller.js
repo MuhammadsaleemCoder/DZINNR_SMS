@@ -3,6 +3,7 @@ import Teacher from "../model/teacher.model.js";
 import Student from "../model/student.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Class from "../model/classes.model.js";
 
 export const createTeacher = async (req, res) => {
   try {
@@ -101,14 +102,13 @@ export const createStudent = async (req, res) => {
       address,
       profilePic,
       classes,
-      section,
       admissionDate,
       status,
     } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
-        .status(404)
+        .status(400)
         .json({ success: false, message: "User already exist" });
     }
     const hashPassword = await bcrypt.hash(password, 10);
@@ -131,7 +131,6 @@ export const createStudent = async (req, res) => {
       address,
       profilePic,
       classes,
-      section,
       admissionDate,
       status,
     });
@@ -152,8 +151,8 @@ export const createStudent = async (req, res) => {
 
 export const getStudents = async (req, res) => {
   try {
-    const students = await Student.find().populate("user");
-    console.log(students);
+    const students = await Student.find().populate("user").populate("classes");
+
     res.status(200).json({ success: true, count: students.length, students });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

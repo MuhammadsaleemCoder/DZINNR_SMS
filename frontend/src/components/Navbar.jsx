@@ -1,6 +1,6 @@
 import React from "react";
 
-function Navbar() {
+function Navbar({ role, items }) {
   return (
     <div className="flex justify-between items-center">
       <div className="flex gap-2 items-center">
@@ -28,7 +28,7 @@ function Navbar() {
               />
             </div>
             <div>
-              <p className="font-semibold">Admin</p>
+              <p className="font-semibold">{role}</p>
             </div>
             <div>
               <i className="fa-solid fa-chevron-down text-xs"></i>

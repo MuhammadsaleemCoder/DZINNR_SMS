@@ -6,6 +6,8 @@ import { seederAdmin } from "./utils/seederAdmin.js";
 import authRouter from "./routes/auth.routes.js";
 import adminRouter from "./routes/adminUserManag.route.js";
 import classRouter from "./routes/class.route.js";
+import teacherManagRoute from "./routes/teacherManag.route.js";
+import studentManag from "./routes/studentManag.route.js";
 import cookieParser from "cookie-parser";
 const app = express();
 
@@ -20,6 +22,11 @@ app.use("/api/auth", authRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin", classRouter);
 
+//teacher route
+app.use("/api/teacher", teacherManagRoute);
+
+// student  route
+app.use("/api/student", studentManag);
 app.get("/cookie", (req, res) => {
   console.log(req.cookies);
 });
