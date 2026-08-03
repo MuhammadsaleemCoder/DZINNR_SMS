@@ -1,32 +1,30 @@
 import React from "react";
-import Card from "../../components/Card";
-import { useEffect, useState } from "react";
-import api from "../../../api/axios";
-
+import StudentCard from "./StudentCard";
 import { LineChart, Line } from "recharts";
-import WelcomeCard from "../../components/WelcomeCard";
+import { useState } from "react";
+import { useEffect } from "react";
+import api from "../../../api/axios";
 const data = [
-  { value: 1 },
-  { value: 3 },
-  { value: 6 },
-  { value: 20 },
-  { value: 18 },
-  { value: 3 },
-  { value: 22 },
+  { value: 0 },
+  { value: 0 },
+  { value: 0 },
+  { value: 0 },
+  { value: 0 },
+  { value: 0 },
+  { value: 0 },
 ];
 
-function TeacherDashboard() {
-  const [classes, setClasses] = useState([]);
-  const [count, setCount] = useState(0);
-  const [teacher, setTeacherName] = useState("");
-
+function ClassTeacherCard() {
+  const [classTeacher, setClassTeacher] = useState("");
+  const [subject, setSubject] = useState("");
   const getData = async () => {
     try {
-      const res = await api.get("/teacher/myClass", "/teacher/myProfile");
+      const res = await api.get("/student/myProfile");
 
-      setClasses(res.data);
-      setCount(res.data.totalClass);
+      setClassTeacher(res.data.student.classes.classTeacher.user.name);
       console.log(res.data);
+      console.log(classTeacher);
+      setSubject(res.data.student.classes.classTeacher.subject);
     } catch (error) {
       console.log("Error fetching teacher data", error);
     }
@@ -35,15 +33,16 @@ function TeacherDashboard() {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div>
-      <WelcomeCard role={name} />
-      <Card
-        name={"Total Teachers"}
+      <StudentCard
+        title={"Class Teacher"}
+        name={classTeacher}
         iconBox={
           "h-16 w-16 bg-green-100 flex items-center justify-center rounded"
         }
-        count={count}
+        subject={subject}
         icon={"fa-solid fa-person-chalkboard text-4xl text-green-600 "}
         chart={
           <LineChart width={190} height={50} data={data}>
@@ -56,9 +55,9 @@ function TeacherDashboard() {
             />
           </LineChart>
         }
-      />{" "}
+      />
     </div>
   );
 }
 
-export default TeacherDashboard;
+export default ClassTeacherCard;

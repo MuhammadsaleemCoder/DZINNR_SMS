@@ -14,13 +14,11 @@ export const createTeacher = async (req, res) => {
       phone,
       department,
       subject,
-
       qualification,
       experience,
       status,
       img,
     } = req.body;
-
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
@@ -62,7 +60,6 @@ export const createTeacher = async (req, res) => {
       message: "Teacher create successfully",
       teacher: newTeacher,
     });
-    console.log(req.cookie);
   } catch (error) {
     res.status(500).json({
       success: false,

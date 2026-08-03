@@ -11,7 +11,11 @@ import Class from "./pages/admin/Class";
 import TeacherLayout from "./pages/layout/TeacherLayout";
 import StudentLayout from "./pages/layout/StudentLayout";
 import StudentDashboard from "./pages/students/StudentDashboard";
-import ClassTeacher from "./pages/students/ClassTeacher";
+import StudentClass from "./pages/students/StudentClass";
+import ClassTeacherCard from "./pages/students/ClassTeacherCard";
+import ClassTeacherSidebar from "./pages/students/ClassTeacherSidebar";
+import StudentSidebar from "./pages/students/StudentSidebar";
+import ClassStudentSidebar from "./pages/students/ClassStudentSidebar";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -42,7 +46,9 @@ const router = createBrowserRouter([
     element: <StudentLayout />,
     children: [
       { path: "dashboard", element: <StudentDashboard /> },
-      { path: "teacher", element: <ClassTeacher /> },
+      { path: "teacher", element: <ClassTeacherSidebar /> },
+      { path: "student", element: <StudentSidebar /> },
+      { path: "classes", element: <ClassStudentSidebar /> },
     ],
   },
 ]);

@@ -4,11 +4,13 @@ import Teacher from "./Teacher";
 import TeacherCard from "./TeacherCard";
 import StudentCard from "./StudentCard";
 import ClassCard from "./ClassCard";
+import WelcomeCard from "../../components/WelcomeCard";
 
-function Dashboard({ role }) {
+function Dashboard() {
   return (
     <div>
-      <div className="flex gap-4">
+      <WelcomeCard name={"Admin"} />
+      <div className="flex gap-4 relative">
         <TeacherCard />
         <StudentCard />
         <ClassCard />

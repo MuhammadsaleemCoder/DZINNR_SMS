@@ -40,7 +40,7 @@ function DashboardLayout() {
   return (
     <div className="flex">
       <Sidebar items={items} role={"admin"} />
-      <div className="flex-1 h-screen py-4 px-6 bg-slate-50">
+      <div className="flex-1 h-screen py-4 px-6 ">
         <Navbar role={"admin"} items={items} />
         <Outlet />
       </div>

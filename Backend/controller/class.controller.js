@@ -4,8 +4,8 @@ import Student from "../model/student.model.js";
 
 export const createClass = async (req, res) => {
   try {
-    const { classId, section, classTeacherId, studentsId, subject } = req.body;
-    if (!classTeacherId || !studentsId) {
+    const { className, section, classTeacherId } = req.body;
+    if (!classTeacherId) {
       return res
         .status(400)
         .json({ success: false, message: "field are required " });
@@ -17,18 +17,11 @@ export const createClass = async (req, res) => {
         .status(400)
         .json({ success: false, message: "teacher not found" });
     }
-    const studentId = await Student.findById(studentsId);
-    if (!studentId) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Student not found" });
-    }
+
     const newClass = await Class.create({
-      className: classId,
+      className,
       section,
       classTeacher: classTeacherId,
-      student: studentsId,
-      subject,
     });
 
     res.status(201).json({
@@ -37,7 +30,11 @@ export const createClass = async (req, res) => {
       class: newClass,
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    if (error.code === 11000) {
+      res
+        .status(500)
+        .json({ success: false, message: "Class and section already exist" });
+    }
   }
 };
 

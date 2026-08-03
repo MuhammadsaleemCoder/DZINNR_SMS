@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import api from "../../../api/axios";
 import Card from "../../components/Card";
 import TeacherCard from "./TeacherCard";
+import CreateTeacherForm from "./CreateTeacherForm";
+import AddButton from "../../components/AddButton";
+
 function Teacher() {
   const [teacher, setTeacher] = useState([]);
+  const [form, setForm] = useState(false);
   const getData = async () => {
     try {
       const res = await api.get("/admin/teachers");
@@ -16,21 +20,64 @@ function Teacher() {
     getData();
     console.log(teacher);
   }, []);
+
+  const handleForm = () => {
+    setForm(true);
+    console.log("first");
+  };
+
+  const cancelForm = () => {
+    setForm(!true);
+  };
   return (
-    <div className="">
-      <TeacherCard />
-      <div className=" w-[80%] mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
+    <div>
+      <AddButton
+        button={"Add Teacher"}
+        onClick={handleForm}
+        heading={"Manage All Teacher"}
+        description={"View and manage all teachers"}
+      />
+
+      <div className="flex justify-between">
+        <TeacherCard />
+
+        {form === true ? (
+          <div>
+            <CreateTeacherForm />
+            <button
+              className="absolute left-318 top-37 z-110 "
+              onClick={cancelForm}
+            >
+              <i className="fa-solid fa-xmark text-2xl hover:text-3xl cursor-pointer"></i>
+            </button>
+          </div>
+        ) : null}
+      </div>
+
+      <div className=" w-full mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
         <table className="w-full">
           <thead className=" h-12 ">
             <tr>
-              <th className="rounded-tl  bg-gray-200 text-center">#</th>
-              <th className=" bg-gray-200 text-left">Teacher</th>
-              <th className=" bg-gray-200   text-left">Department</th>
-              <th className=" bg-gray-200  text-left">Subject</th>
-              <th className=" bg-gray-200  text-left">Email</th>
-              <th className=" bg-gray-200  text-left">Phone</th>
-              <th className=" bg-gray-200  text-left">Status</th>
-              <th className="rounded-tr bg-gray-200 text-left">Action</th>
+              <th className="rounded-tl-lg  bg-zinc-800 text-yellow-400 text-center">
+                #
+              </th>
+              <th className=" bg-zinc-800 text-yellow-400 text-left">
+                Teacher
+              </th>
+              <th className=" bg-zinc-800 text-yellow-400   text-left">
+                Department
+              </th>
+              <th className=" bg-zinc-800 text-yellow-400  text-left">
+                Subject
+              </th>
+              <th className=" bg-zinc-800 text-yellow-400  text-left">Email</th>
+              <th className=" bg-zinc-800 text-yellow-400  text-left">Phone</th>
+              <th className=" bg-zinc-800 text-yellow-400  text-left">
+                Status
+              </th>
+              <th className="rounded-tr-lg bg-zinc-800 text-yellow-400 text-left">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -44,7 +91,7 @@ function Teacher() {
                   <div className="flex w-[12 ] bg-amber-300 h-12 rounded-full">
                     <img
                       width={"48px"}
-                      src={val.img.url}
+                      src={val.img}
                       alt=""
                       className="w-[12 ] h-12 object-cover rounded-full"
                     />

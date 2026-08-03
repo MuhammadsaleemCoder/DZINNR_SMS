@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ClassCard from "./ClassCard";
 import api from "../../../api/axios";
 import Card from "../../components/Card";
+import AddButton from "../../components/AddButton";
 function Class() {
   const [classes, setClasses] = useState([]);
   const [count, setCount] = useState(0);
@@ -21,19 +22,31 @@ function Class() {
   }, []);
   return (
     <div>
+      <AddButton
+        button={"Add Class"}
+        // onClick={handleForm}
+        heading={"Manage All Classes"}
+        description={"View and manage all Classes"}
+      />
       <ClassCard />
-      <div className=" w-[80%] mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
+      <div className=" w-full mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
         <table className="w-full">
           <thead className=" h-12 ">
             <tr>
-              <th className="rounded-tl  bg-gray-200 text-center">#</th>
-              <th className=" bg-gray-200 text-left">ClassName</th>
-              <th className=" bg-gray-200   text-left">Section</th>
-              <th className=" bg-gray-200  text-left">Class Teacher</th>
-              <th className=" bg-gray-200  text-left">Subject</th>
-              <th className=" bg-gray-200  text-left">Students</th>
-              <th className=" bg-gray-200  text-left">Status</th>
-              <th className="rounded-tr bg-gray-200 text-left">Action</th>
+              <th className="rounded-tl-lg  bg-zinc-800 text-white text-center">
+                #
+              </th>
+              <th className=" bg-zinc-800 text-white text-left">ClassName</th>
+              <th className=" bg-zinc-800 text-white   text-left">Section</th>
+              <th className=" bg-zinc-800 text-white  text-left">
+                Class Teacher
+              </th>
+              <th className=" bg-zinc-800 text-white  text-left">Subject</th>
+              <th className=" bg-zinc-800 text-white  text-left">Students</th>
+              <th className=" bg-zinc-800 text-white  text-left">Status</th>
+              <th className="rounded-tr-lg bg-zinc-800 text-white text-left">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>

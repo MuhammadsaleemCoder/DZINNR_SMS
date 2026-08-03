@@ -18,8 +18,6 @@ export const getProfile = async (req, res) => {
         },
       })
       .populate("user");
-    console.log(student);
-
     if (!student) {
       return res
         .status(404)

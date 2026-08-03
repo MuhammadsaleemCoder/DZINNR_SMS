@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import api from "../../../api/axios";
 
 import WelcomeCard from "../../components/WelcomeCard";
-import ClassTeacher from "./ClassTeacher";
 import Navbar from "../../components/Navbar";
+import StudentInfo from "./StudentInfo";
+import StudentClass from "./StudentClass";
+import ClassTeacherCard from "./ClassTeacherCard";
 
 function StudentDashboard() {
   const [std, setStd] = useState([]);
@@ -17,10 +19,10 @@ function StudentDashboard() {
       const res = await api.get("/student/myProfile");
 
       console.log(res.data.student.user.name);
-      setName(res.data.user);
-      setName(res.data.student.user.name);
+      // setName(res.data.user);
+      // setName(res.data.student.user.name);
     } catch (error) {
-      console.log("Error fetching teacher data", error);
+      console.log("Error fetching student data", error);
     }
   };
 
@@ -30,7 +32,11 @@ function StudentDashboard() {
   return (
     <div>
       <WelcomeCard name={name} />
-      <ClassTeacher />
+      <div className="flex gap-4">
+        <ClassTeacherCard />
+        <StudentInfo />
+        <StudentClass />
+      </div>
     </div>
   );
 }

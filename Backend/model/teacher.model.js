@@ -32,7 +32,7 @@ const teacherSchema = new mongoose.Schema(
       default: "Active",
     },
     img: {
-      url: String,
+      type: String,
     },
   },
   {

@@ -40,3 +40,18 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+export const logoutUser = async (req, res) => {
+  try {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expiresIn: new Date(0),
+    });
+
+    res
+      .status(200)
+      .json({ success: true, message: "Logout user successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

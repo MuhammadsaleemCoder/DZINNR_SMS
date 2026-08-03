@@ -4,6 +4,8 @@ import { LineChart, Line } from "recharts";
 import Card from "../../components/Card";
 import StudentCard from "./StudentCard";
 
+import AddButton from "../../components/AddButton";
+
 const data = [
   { value: 0 },
   { value: 12 },
@@ -31,6 +33,12 @@ function TotalStudents() {
   }, []);
   return (
     <div>
+      <AddButton
+        button={"Add Student"}
+        // onClick={handleForm}
+        heading={"Manage All Student"}
+        description={"View and manage all Student"}
+      />
       <StudentCard />
       <div className=" w-[80%] mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
         <table className="w-full">

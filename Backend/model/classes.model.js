@@ -19,10 +19,6 @@ const classSchema = new mongoose.Schema(
       ref: "Student",
     },
 
-    subject: {
-      type: String,
-      required: true,
-    },
     totalStudent: {
       type: Number,
       default: 0,
@@ -32,6 +28,8 @@ const classSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+classSchema.index({ className: 1, section: 1 }, { unique: true });
 
 const Class = mongoose.model("Class", classSchema);
 export default Class;

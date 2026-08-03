@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import StudentCard from "./StudentCard";
 import api from "../../../api/axios";
-import { LineChart, Line } from "recharts";
-import Card from "../../components/Card";
 
+import { LineChart, Line } from "recharts";
 const data = [
   { value: 0 },
   { value: 0 },
@@ -12,39 +12,38 @@ const data = [
   { value: 0 },
   { value: 0 },
 ];
-function StudentCard() {
-  const [count, setCount] = useState([]);
+function StudentInfo() {
+  const [studentName, setStudentName] = useState("");
   const getData = async () => {
     try {
-      const res = await api.get("/admin/students");
+      const res = await api.get("/student/myProfile");
 
-      setCount(res.data.count);
+      setStudentName(res.data.student.user.name);
     } catch (error) {
-      console.log("error to fetching data from admin/students");
+      console.log("Error fetching teacher data", error);
     }
   };
 
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div>
-      {" "}
-      <Card
-        name={"Total Students"}
+      <StudentCard
+        icon={"fa-solid fa-user-graduate text-4xl text-blue-600 "}
         iconBox={
           "h-16 w-16 bg-blue-100 flex items-center justify-center rounded"
         }
-        count={count}
-        icon={"fa-solid fa-person-chalkboard text-4xl text-blue-600 "}
+        title={"Student Name"}
+        name={studentName}
         chart={
           <LineChart width={190} height={50} data={data}>
             <Line
               type="monotone"
               dataKey="value"
               stroke="#3B82F6"
-              strokeWidth={3}
-              dot={{ r: 4 }}
+              strokeWidth={2}
             />
           </LineChart>
         }
@@ -53,4 +52,4 @@ function StudentCard() {
   );
 }
 
-export default StudentCard;
+export default StudentInfo;
