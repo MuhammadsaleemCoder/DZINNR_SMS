@@ -5,7 +5,8 @@ import Student from "../model/student.model.js";
 export const createClass = async (req, res) => {
   try {
     const { className, section, classTeacherId } = req.body;
-    if (!classTeacherId) {
+    console.log(req.body);
+    if (!className || !section || !classTeacherId) {
       return res
         .status(400)
         .json({ success: false, message: "field are required " });
@@ -14,7 +15,7 @@ export const createClass = async (req, res) => {
     const teacherId = await Teacher.findById(classTeacherId);
     if (!teacherId) {
       return res
-        .status(400)
+        .status(404)
         .json({ success: false, message: "teacher not found" });
     }
 
@@ -31,10 +32,16 @@ export const createClass = async (req, res) => {
     });
   } catch (error) {
     if (error.code === 11000) {
-      res
-        .status(500)
-        .json({ success: false, message: "Class and section already exist" });
+      return res.status(409).json({
+        success: false,
+        message: "Class and section already exist",
+      });
     }
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 

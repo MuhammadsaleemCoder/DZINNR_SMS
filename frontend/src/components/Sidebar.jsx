@@ -16,12 +16,12 @@ function Sidebar({ items, role }) {
     }
   };
   return (
-    <div className="h-screen w-1/6 border-r-2 border-yellow-200 flex flex-col justify-between bg-zinc-800 ">
+    <div className="h-screen w-1/6 border-r border-amber-600 flex flex-col justify-between bg-[#0A0E12] ">
       <div className="p-2 h-[10%]  ">
         <div className="flex gap-3 p-4">
           <img src="/images/logo.png" alt="" className=" w-10" />
           <div>
-            <h1 className="text-yellow-400 font-bold text-xl">Dzinrr</h1>
+            <h1 className="text-amber-500 font-bold text-xl">Dzinrr</h1>
             <p className="text-white text-[12px]">School Management System</p>
           </div>
         </div>
@@ -33,7 +33,7 @@ function Sidebar({ items, role }) {
           <NavLink
             to={item.path}
             key={idx}
-            className="flex items-center gap-3 text-yellow-400 p-5 font-medium w-[90%] hover:bg-yellow-100  hover:text-zinc-700 rounded-lg"
+            className="flex items-center gap-3 text-white  p-5 font-medium w-[90%] hover:bg-white  hover:text-black rounded-lg"
           >
             <i className={item.icon}></i>
             <p className="">{item.title}</p>
@@ -41,7 +41,7 @@ function Sidebar({ items, role }) {
         ))}
       </div>
       <div className="h-[10%] flex items-center  justify-center">
-        <div className="w-[80%]   flex justify-between items-center border border-yellow-300 p-3 px-4 rounded-xl">
+        <div className="w-[80%]   flex justify-between items-center border border-white p-3 px-4 rounded-xl bg-[#1F2933]">
           <div className="h-12 w-12  rounded-full ">
             <img
               src="https://static.vecteezy.com/system/resources/thumbnails/004/607/791/small_2x/man-face-emotive-icon-smiling-male-character-in-blue-shirt-flat-illustration-isolated-on-white-happy-human-psychological-portrait-positive-emotions-user-avatar-for-app-web-design-vector.jpg"
@@ -50,11 +50,11 @@ function Sidebar({ items, role }) {
             />
           </div>
           <div>
-            <p className="font-semibold text-yellow-400">{role}</p>
+            <p className="font-semibold text-white">{role}</p>
             <p className="text-white text-sm">{} Senior</p>
           </div>
-          <div>
-            <i className="fa-solid fa-chevron-down text-xs text-white"></i>
+          <div className="gap-2 items-center  flex">
+            <i className="fa-solid fa-arrow-right-from-bracket text-white"></i>
             <button
               onClick={handleLogout}
               className="text-sm text-white hover:text-yellow-400"

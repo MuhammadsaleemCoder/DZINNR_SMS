@@ -23,7 +23,6 @@ function Teacher() {
 
   const handleForm = () => {
     setForm(true);
-    console.log("first");
   };
 
   const cancelForm = () => {
@@ -58,24 +57,18 @@ function Teacher() {
         <table className="w-full">
           <thead className=" h-12 ">
             <tr>
-              <th className="rounded-tl-lg  bg-zinc-800 text-yellow-400 text-center">
+              <th className="rounded-tl-lg  bg-[#1F2933] text-white text-center">
                 #
               </th>
-              <th className=" bg-zinc-800 text-yellow-400 text-left">
-                Teacher
-              </th>
-              <th className=" bg-zinc-800 text-yellow-400   text-left">
+              <th className=" bg-[#1F2933] text-white text-left">Teacher</th>
+              <th className=" bg-[#1F2933] text-white   text-left">
                 Department
               </th>
-              <th className=" bg-zinc-800 text-yellow-400  text-left">
-                Subject
-              </th>
-              <th className=" bg-zinc-800 text-yellow-400  text-left">Email</th>
-              <th className=" bg-zinc-800 text-yellow-400  text-left">Phone</th>
-              <th className=" bg-zinc-800 text-yellow-400  text-left">
-                Status
-              </th>
-              <th className="rounded-tr-lg bg-zinc-800 text-yellow-400 text-left">
+              <th className=" bg-[#1F2933] text-white  text-left">Subject</th>
+              <th className=" bg-[#1F2933] text-white  text-left">Email</th>
+              <th className=" bg-[#1F2933] text-white  text-left">Phone</th>
+              <th className=" bg-[#1F2933] text-white  text-left">Status</th>
+              <th className="rounded-tr-lg bg-[#1F2933] text-white text-left">
                 Action
               </th>
             </tr>

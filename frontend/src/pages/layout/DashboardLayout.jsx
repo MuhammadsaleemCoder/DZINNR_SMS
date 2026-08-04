@@ -38,7 +38,7 @@ const items = [
 ];
 function DashboardLayout() {
   return (
-    <div className="flex">
+    <div className="flex bg-slate-100">
       <Sidebar items={items} role={"admin"} />
       <div className="flex-1 h-screen py-4 px-6 ">
         <Navbar role={"admin"} items={items} />

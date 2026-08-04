@@ -14,10 +14,10 @@ const classSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Teacher",
     },
-    students: {
-      type: String,
-      ref: "Student",
-    },
+    // students: {
+    //   type: String,
+    //   ref: "Student",
+    // },
 
     totalStudent: {
       type: Number,

@@ -102,6 +102,7 @@ export const createStudent = async (req, res) => {
       admissionDate,
       status,
     } = req.body;
+    console.log(req.body);
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res

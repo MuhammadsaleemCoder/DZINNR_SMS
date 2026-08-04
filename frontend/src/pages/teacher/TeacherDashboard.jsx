@@ -26,7 +26,7 @@ function TeacherDashboard() {
 
       setClasses(res.data);
       setCount(res.data.totalClass);
-      console.log(res.data);
+      console.log(res.data4);
     } catch (error) {
       console.log("Error fetching teacher data", error);
     }

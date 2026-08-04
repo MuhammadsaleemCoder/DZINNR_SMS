@@ -5,6 +5,7 @@ import Card from "../../components/Card";
 import StudentCard from "./StudentCard";
 
 import AddButton from "../../components/AddButton";
+import CreateStudentForm from "./CreateStudentForm";
 
 const data = [
   { value: 0 },
@@ -16,6 +17,8 @@ const data = [
   { value: 2 },
 ];
 function TotalStudents() {
+  const [form, setForm] = useState(false);
+  const [close, setClose] = useState(false);
   const [students, setStudents] = useState([]);
   const getData = async () => {
     try {
@@ -31,27 +34,48 @@ function TotalStudents() {
   useEffect(() => {
     getData();
   }, []);
+  const handleForm = () => {
+    setForm(true);
+    console.log("first");
+  };
   return (
     <div>
       <AddButton
         button={"Add Student"}
-        // onClick={handleForm}
+        onClick={handleForm}
         heading={"Manage All Student"}
         description={"View and manage all Student"}
       />
+      {form === true ? (
+        <div>
+          <CreateStudentForm />{" "}
+          <button
+            className="absolute left-346 top-56 z-1000"
+            onClick={() => setForm(false)}
+          >
+            <i className="fa-solid fa-xmark text-2xl hover:text-3xl cursor-pointer"></i>
+          </button>
+        </div>
+      ) : null}
       <StudentCard />
-      <div className=" w-[80%] mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
+      <div className=" w-full mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
         <table className="w-full">
           <thead className=" h-12 ">
             <tr>
-              <th className="rounded-tl  bg-gray-200 text-center">#</th>
-              <th className=" bg-gray-200 text-left">name</th>
-              <th className=" bg-gray-200  text-left">Roll No.</th>
-              <th className=" bg-gray-200   text-left">Class</th>
-              <th className=" bg-gray-200   text-left">Section</th>
-              <th className=" bg-gray-200  text-left">Date of Birth</th>
-              <th className=" bg-gray-200  text-left">Status</th>
-              <th className="rounded-tr bg-gray-200 text-left">Action</th>
+              <th className="rounded-tl-lg  bg-[#1F2933] text-white text-center">
+                #
+              </th>
+              <th className=" bg-[#1F2933] text-white text-left">name</th>
+              <th className=" bg-[#1F2933] text-white  text-left">Roll No.</th>
+              <th className=" bg-[#1F2933] text-white   text-left">Class</th>
+              <th className=" bg-[#1F2933] text-white   text-left">Section</th>
+              <th className=" bg-[#1F2933] text-white  text-left">
+                Date of Birth
+              </th>
+              <th className=" bg-[#1F2933] text-white  text-left">Status</th>
+              <th className="rounded-tr-lg bg-[#1F2933] text-white text-left">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -70,11 +94,11 @@ function TotalStudents() {
                       className="w-[12 ] h-12 object-cover rounded-full"
                     />
                   </div>
-                  <td className="">{student.user.name}</td>
+                  <td>{student.user.name}</td>
                 </div>
                 <td>{student.rollNumber}</td>
-                <td>{student.classes.className}</td>
-                <td className="">{student.section}</td>
+                {/* <td>{student.classes.className}</td> */}
+                <td>{student.section}</td>
                 <td>{student.dateOfBirth}</td>
 
                 <td

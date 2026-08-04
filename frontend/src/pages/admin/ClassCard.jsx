@@ -40,8 +40,8 @@ function ClassCard() {
               type="monotone"
               dataKey="value"
               stroke="#6B21A8"
-              strokeWidth={4}
-              dot={{ r: 5 }}
+              strokeWidth={3}
+              dot={{ r: 3 }}
             />
           </LineChart>
         }

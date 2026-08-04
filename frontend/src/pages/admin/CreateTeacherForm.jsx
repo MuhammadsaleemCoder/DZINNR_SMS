@@ -44,7 +44,7 @@ function CreateTeacherForm() {
   return (
     <div className="w-[40%] z-100 h-170 bg-white border border-slate-300 absolute top-30 left-142  rounded-lg items-center flex flex-col">
       <div className=" border-b  border-slate-400  w-full flex justify-center ">
-        <h1 className="font-bold text-2xl mt-8  text-blue-700 mb-3">
+        <h1 className="font-bold text-2xl mt-8  text-amber-600 mb-3">
           Add Teacher
         </h1>
       </div>
@@ -195,7 +195,7 @@ function CreateTeacherForm() {
               </select>
             </div>
           </div>
-          <div className="flex flex-col  gap-2 w-full mt-5 ">
+          <div className="flex flex-col  gap-2 w-full mt-5 mb-3 ">
             <label htmlFor="" className="font-medium ">
               Image Link
             </label>
@@ -211,10 +211,10 @@ function CreateTeacherForm() {
           </div>
         </div>
 
-        <div className="w-full  mt-4 flex gap-10 items-center justify-center  border-t border-slate-400  ">
+        <div className="w-full   flex gap-10 items-center justify-center  border-t border-slate-400  h-full">
           <button
             type="submit"
-            className="hover:cursor-pointer w-30 bg-blue-600 text-taupe-50 border h-14 items-center justify-center flex rounded mt-4 hover:bg-blue-800"
+            className="hover:cursor-pointer w-26 bg-amber-600 text-taupe-50 border h-12 items-center justify-center flex rounded mt-2 hover:bg-amber-800"
           >
             <i className="fa-solid fa-check"></i>
           </button>
