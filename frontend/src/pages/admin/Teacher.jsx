@@ -53,7 +53,7 @@ function Teacher() {
         ) : null}
       </div>
 
-      <div className=" w-full mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
+      <div className=" w-full mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)] bg-white">
         <table className="w-full">
           <thead className=" h-12 ">
             <tr>
@@ -68,7 +68,7 @@ function Teacher() {
               <th className=" bg-[#1F2933] text-white  text-left">Email</th>
               <th className=" bg-[#1F2933] text-white  text-left">Phone</th>
               <th className=" bg-[#1F2933] text-white  text-left">Status</th>
-              <th className="rounded-tr-lg bg-[#1F2933] text-white text-left">
+              <th className="rounded-tr-lg bg-[#1F2933] text-white text-center">
                 Action
               </th>
             </tr>
@@ -100,7 +100,19 @@ function Teacher() {
                 >
                   {val.status}{" "}
                 </td>
-                <td>edit</td>
+                <td className=" ">
+                  <div className="flex gap-5 items-center justify-center cursor-pointer">
+                    <button className="h-9 w-9 rounded-lg border border-zinc-300 bg-white  cursor-pointer">
+                      <i className="fa-regular fa-eye "></i>
+                    </button>
+                    <button className="h-9 w-9 rounded-lg border  border-zinc-300">
+                      <i className="fa-regular fa-pen-to-square"></i>
+                    </button>
+                    <button className="h-9 w-9 rounded-lg border  border-zinc-300">
+                      <i className="fa-regular fa-trash-can text-red-500"></i>
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

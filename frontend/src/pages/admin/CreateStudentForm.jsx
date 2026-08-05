@@ -55,7 +55,7 @@ function createStudentForm() {
       setClasses(res.data.classes);
       console.log(res.data.classes);
     } catch (error) {
-      console.log("Error to finding classes creating class", error);
+      console.log("Error to finding classes creating class", error.response);
     }
   };
 
@@ -240,13 +240,15 @@ function createStudentForm() {
 
                 <select
                   name="classes"
+                  onChange={handleInput}
+                  value={form.classes}
                   id=""
                   className="w-full border border-gray-300 rounded-lg h-10 px-3 mt-2"
                 >
                   {classes.map((cls) => {
                     return (
-                      <option value={cls._id}>
-                        {cls.className} - {cls.section}
+                      <option key={cls._id} value={cls._id}>
+                        {cls.className}
                       </option>
                     );
                   })}

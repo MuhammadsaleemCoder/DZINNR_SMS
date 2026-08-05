@@ -3,7 +3,9 @@ import ClassCard from "./ClassCard";
 import api from "../../../api/axios";
 import Card from "../../components/Card";
 import AddButton from "../../components/AddButton";
+import CreateClasses from "./CreateClasses";
 function Class() {
+  const [closeForm, setCloseForm] = useState(false);
   const [classes, setClasses] = useState([]);
   const [count, setCount] = useState(0);
   const getData = async () => {
@@ -11,11 +13,15 @@ function Class() {
       const res = await api.get("/admin/class");
       setClasses(res.data.classes);
       setCount(res.data.count);
+      console.log("class", res.data);
       console.log(res.data);
-      console.log(res.data.classes);
     } catch (error) {
-      console.log("error to fetching data from admin/class");
+      console.log("error to fetching data from admin/class", error);
     }
+  };
+
+  const handleForm = () => {
+    setCloseForm(true);
   };
   useEffect(() => {
     getData();
@@ -24,10 +30,24 @@ function Class() {
     <div>
       <AddButton
         button={"Add Class"}
-        // onClick={handleForm}
+        onClick={handleForm}
         heading={"Manage All Classes"}
         description={"View and manage all Classes"}
       />
+      {closeForm === true ? (
+        <div>
+          <button
+            className="top-30 left-310 absolute z-200"
+            onClick={() => {
+              setCloseForm(false);
+            }}
+          >
+            X
+          </button>
+          <CreateClasses />
+        </div>
+      ) : null}
+
       <ClassCard />
       <div className=" w-full mt-4 rounded-br rounded-bl  shadow-[0_4px_10px_rgba(0,0,0,.2)]">
         <table className="w-full">
@@ -60,7 +80,8 @@ function Class() {
                 <td className="">{val.className}</td>
                 <td className="">{val.section}</td>
                 <td className="">{val.classTeacher.user.name}</td>
-                <td className="">{val.subject}</td>
+                <td className="">{val.classTeacher.subject}</td>
+                {/* <td className="">{val.classes.length}</td> */}
               </tr>
             ))}
           </tbody>
