@@ -1,9 +1,9 @@
 import React from "react";
-import TotalStudents from "./TotalStudents";
-import Teacher from "./Teacher";
-import TeacherCard from "./TeacherCard";
-import StudentCard from "./StudentCard";
-import ClassCard from "./ClassCard";
+import TotalStudents from "./students/TotalStudents";
+import Teacher from "./teacher/Teacher";
+import TeacherCard from "./teacher/TeacherCard";
+import StudentCard from "./students/StudentCard";
+import ClassCard from "./class/ClassCard";
 import WelcomeCard from "../../components/WelcomeCard";
 
 function Dashboard() {

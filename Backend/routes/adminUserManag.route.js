@@ -6,6 +6,7 @@ import {
   getTeacher,
   createStudent,
   getStudents,
+  singleTeacher,
 } from "../controller/adminUserManagement.controller.js";
 import { protect } from "../middlewares/protect.middleware.js";
 import { authorized } from "../middlewares/authorizedUser.middlewares.js";
@@ -15,5 +16,5 @@ router.get("/teachers", protect, authorized("admin"), getTeacher);
 router.post("/students", protect, authorized("admin"), createStudent);
 router.get("/students", protect, authorized("admin"), getStudents);
 router.get("/students", protect, authorized("admin"), getStudents);
-
+router.get("/TeacherProfile/:id", protect, authorized("admin"), singleTeacher);
 export default router;

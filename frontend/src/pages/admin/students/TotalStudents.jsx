@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import api from "../../../api/axios";
+import api from "../../../../api/axios";
 import { LineChart, Line } from "recharts";
-import Card from "../../components/Card";
+import Card from "../../../components/Card";
 import StudentCard from "./StudentCard";
 
-import AddButton from "../../components/AddButton";
+import AddButton from "../../../components/AddButton";
 import CreateStudentForm from "./CreateStudentForm";
 
 const data = [

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ClassCard from "./ClassCard";
-import api from "../../../api/axios";
-import Card from "../../components/Card";
-import AddButton from "../../components/AddButton";
+import api from "../../../../api/axios";
+import Card from "../../../components/Card";
+import AddButton from "../../../components/AddButton";
 import CreateClasses from "./CreateClasses";
 function Class() {
   const [closeForm, setCloseForm] = useState(false);

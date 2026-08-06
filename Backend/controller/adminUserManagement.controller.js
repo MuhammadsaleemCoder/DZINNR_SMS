@@ -156,3 +156,19 @@ export const getStudents = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+export const singleTeacher = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const teacherId = await Teacher.findById(id).populate("user");
+    if (!teacherId) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Teacher Profile Not Found" });
+    }
+
+    res.status(200).json({ success: true, teacherId });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

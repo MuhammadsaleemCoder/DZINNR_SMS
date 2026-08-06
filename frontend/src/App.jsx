@@ -5,9 +5,9 @@ import Signup from "./pages/auth/Signup";
 import Dashboard from "./pages/admin/Dashboard";
 import TeacherDashboard from "./pages/teacher/TeacherDashboard";
 import DashboardLayout from "./pages/layout/DashboardLayout";
-import Teacher from "./pages/admin/Teacher";
-import TotalStudents from "./pages/admin/TotalStudents";
-import Class from "./pages/admin/Class";
+import Teacher from "./pages/admin/teacher/Teacher";
+import TotalStudents from "./pages/admin/students/TotalStudents";
+import Class from "./pages/admin/class/Class";
 import TeacherLayout from "./pages/layout/TeacherLayout";
 import StudentLayout from "./pages/layout/StudentLayout";
 import StudentDashboard from "./pages/students/StudentDashboard";
@@ -16,6 +16,7 @@ import ClassTeacherCard from "./pages/students/ClassTeacherCard";
 import ClassTeacherSidebar from "./pages/students/ClassTeacherSidebar";
 import StudentSidebar from "./pages/students/StudentSidebar";
 import ClassStudentSidebar from "./pages/students/ClassStudentSidebar";
+import ViewDetails from "./pages/admin/teacher/ViewDetails";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
     children: [
       { path: "dashboard", element: <Dashboard /> },
       { path: "teacher", element: <Teacher /> },
+      { path: "teacher/:id", element: <ViewDetails /> },
       { path: "student", element: <TotalStudents /> },
       { path: "classes", element: <Class /> },
     ],

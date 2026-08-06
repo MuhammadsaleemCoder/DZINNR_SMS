@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import api from "../../../api/axios";
-import Card from "../../components/Card";
+import api from "../../../../api/axios";
+import Card from "../../../components/Card";
 import TeacherCard from "./TeacherCard";
 import CreateTeacherForm from "./CreateTeacherForm";
-import AddButton from "../../components/AddButton";
-
+import AddButton from "../../../components/AddButton";
+import { useNavigate } from "react-router";
+import EditDetails from "./EditDetails";
 function Teacher() {
   const [teacher, setTeacher] = useState([]);
   const [form, setForm] = useState(false);
+  const navigate = useNavigate();
   const getData = async () => {
     try {
       const res = await api.get("/admin/teachers");
@@ -28,8 +30,12 @@ function Teacher() {
   const cancelForm = () => {
     setForm(!true);
   };
+
+  const [mode, setMode] = useState("");
   return (
     <div>
+      {/* <ViewDetails /> */}
+      {mode === "edit" ? <EditDetails /> : null}
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}
@@ -102,7 +108,11 @@ function Teacher() {
                 </td>
                 <td className=" ">
                   <div className="flex gap-5 items-center justify-center cursor-pointer">
-                    <button className="h-9 w-9 rounded-lg border border-zinc-300 bg-white  cursor-pointer">
+                    <button
+                      className="h-9 w-9 rounded-lg border border-zinc-300 bg-white  cursor-pointer"
+                      // onClick={() => navigate(`/admin/teacher/${val._id}`)}
+                      onClick={() => setMode("edit")}
+                    >
                       <i className="fa-regular fa-eye "></i>
                     </button>
                     <button className="h-9 w-9 rounded-lg border  border-zinc-300">

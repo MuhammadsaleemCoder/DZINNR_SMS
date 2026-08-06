@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "../../components/Card";
-import api from "../../../api/axios";
+import Card from "../../../components/Card";
+import api from "../../../../api/axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { LineChart, Line } from "recharts";
