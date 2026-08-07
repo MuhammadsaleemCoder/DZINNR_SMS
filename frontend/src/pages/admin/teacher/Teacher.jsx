@@ -5,10 +5,12 @@ import TeacherCard from "./TeacherCard";
 import CreateTeacherForm from "./CreateTeacherForm";
 import AddButton from "../../../components/AddButton";
 import { useNavigate } from "react-router";
-import EditDetails from "./EditDetails";
+import EditDetails from "./ViewTeacher";
+import ViewTeacher from "./ViewTeacher";
 function Teacher() {
   const [teacher, setTeacher] = useState([]);
   const [form, setForm] = useState(false);
+  const [profileData, setProfileData] = useState(null);
   const navigate = useNavigate();
   const getData = async () => {
     try {
@@ -30,12 +32,12 @@ function Teacher() {
   const cancelForm = () => {
     setForm(!true);
   };
+  console.log("adl node ", profileData);
 
-  const [mode, setMode] = useState("");
   return (
-    <div>
+    <div className="sm:block">
       {/* <ViewDetails /> */}
-      {mode === "edit" ? <EditDetails /> : null}
+      {profileData && <ViewTeacher profileData={profileData} name={"asd"} />}
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}
@@ -82,6 +84,7 @@ function Teacher() {
           <tbody>
             {teacher.map((val, idx) => (
               <tr
+                setProfileData={val}
                 className=" h-12 w-full border-b  border-b-gray-300 p-8 relative"
                 key={val._id}
               >
@@ -104,14 +107,14 @@ function Teacher() {
                 <td
                   className={`  absolute rounded-lg   px-2 mt-2 justify-center ${val.status === "Active" ? "p-1 text-center text-green-900 bg-green-100 border border-green-300" : "bg-red-100 text-red-900 p-1 border border-red-300"}`}
                 >
-                  {val.status}{" "}
+                  {val.status}
                 </td>
                 <td className=" ">
                   <div className="flex gap-5 items-center justify-center cursor-pointer">
                     <button
                       className="h-9 w-9 rounded-lg border border-zinc-300 bg-white  cursor-pointer"
                       // onClick={() => navigate(`/admin/teacher/${val._id}`)}
-                      onClick={() => setMode("edit")}
+                      onClick={() => setProfileData(val)}
                     >
                       <i className="fa-regular fa-eye "></i>
                     </button>
