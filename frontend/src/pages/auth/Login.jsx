@@ -5,9 +5,10 @@ import axios from "axios";
 import LeftSide from "../../components/auth/LeftSide";
 import api from "../../../api/axios";
 export default function Login() {
-  const [selectedRole, setSelectedRole] = useState("Student");
+  const [selectedRole, setSelectedRole] = useState("");
   const [formData, setFromData] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const selectRoleUser = (role) => {
     setSelectedRole(role);
   };
@@ -29,6 +30,7 @@ export default function Login() {
 
       console.log(res.data);
       setMsg(res.data.message);
+      console.log(errorMsg);
       setTimeout(() => {
         if (res.data.user.role === "admin") {
           navigate("/admin/dashboard");
@@ -37,9 +39,10 @@ export default function Login() {
         } else if (res.data.user.role === "student") {
           navigate("/Students/dashboard");
         }
-      }, 1000);
+      }, 2000);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      setErrorMsg(error.response?.data?.message);
     }
   };
 
@@ -62,12 +65,24 @@ export default function Login() {
           className="w-full h-full sm:w-[80%] sm:h-full  "
           onSubmit={formSubmit}
         >
-          <div className="flex flex-col items-center gap-4 mt-3   ">
-            <p className="font-semibold mt-10">Select Your Role</p>
+          <div className="flex flex-col items-center gap-4  ">
+            {!selectedRole ? (
+              <p className="text-[#1A2332] font-semibold mt-4">
+                {" "}
+                <i className="fa-regular fa-circle-check font-semibold text-amber-700"></i>{" "}
+                Select your role
+              </p>
+            ) : (
+              <p className="text-[#1A2332] font-semibold mt-4">
+                {" "}
+                <i className="fa-regular fa-circle-check font-semibold text-amber-700"></i>{" "}
+                {selectedRole} role selected
+              </p>
+            )}
             <div className="flex gap-5 w-full md:justify-center ">
               <button
                 type="button"
-                onClick={() => selectRoleUser("Admin")}
+                onClick={() => selectRoleUser("admin")}
                 className={` ${selectedRole === "Admin" ? "bg-amber-50 border-amber-600" : "border-zinc-300"} flex flex-col justify-center items-center  rounded  border  w-42 h-32 gap-1`}
               >
                 <i className="fa-solid fa-user-tie text-3xl text-amber-600"></i>
@@ -76,7 +91,7 @@ export default function Login() {
               </button>
               <button
                 type="button"
-                onClick={() => selectRoleUser("Teacher")}
+                onClick={() => selectRoleUser("teacher")}
                 className={` ${selectedRole === "Teacher" ? "bg-amber-50 border-amber-600" : "border-zinc-300"} flex flex-col justify-center items-center rounded  border  w-42 h-32 gap-1`}
               >
                 <i className="fa-solid fa-person-chalkboard text-3xl text-amber-700"></i>
@@ -85,7 +100,7 @@ export default function Login() {
               </button>
               <button
                 type="button"
-                onClick={() => selectRoleUser("Student")}
+                onClick={() => selectRoleUser("student")}
                 className={`${selectedRole == "Student" ? "bg-amber-50 border-amber-600" : "border-gray-300"}
                  flex flex-col justify-center items-center  rounded  border w-42 h-32 gap-1  `}
               >
@@ -94,10 +109,33 @@ export default function Login() {
                 <p>View & Learn</p>
               </button>
             </div>
-            <p className="text-[#1A2332] font-semibold">
-              <i className="fa-regular fa-circle-check font-semibold text-amber-700"></i>{" "}
-              {selectedRole} Role Selected
-            </p>
+
+            {errorMsg && (
+              <div className="w-[52%] bg-[#FDE8E8] h-24 flex items-center justify-around rounded border border-red-400">
+                <div>
+                  <i className="fa-solid fa-triangle-exclamation text-6xl text-red-700 "></i>
+                </div>
+                <div>
+                  <p className="text-red-700 font-bold">Login Failed</p>
+                  <p className="text-[14px]">{errorMsg} </p>
+                  <p className="text-[14px]">
+                    Please select the correct role and try again
+                  </p>
+                </div>
+              </div>
+            )}
+            {msg && (
+              <div className="w-[52%] bg-green-100 py-3 flex items-center justify-around rounded border border-green-400">
+                <div>
+                  <i className="fa-solid fa-circle-check text-green-500 text-5xl"></i>
+                </div>
+                <div>
+                  <p className="text-green-700 font-bold">Login Successfully</p>
+                  <p className="text-[14px]">{msg} </p>
+                  <p className="text-[14px]">You are login to your account</p>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className=" h-24 mt-10 w-full ">
@@ -144,13 +182,7 @@ export default function Login() {
             </button>
           </div>
         </form>
-        <p>
-          {msg && (
-            <div>
-              <p>{msg} </p>
-            </div>
-          )}
-        </p>
+
         <p className="font-medium">
           Don't have an account ?{" "}
           <span className="text-amber-600 font-medium">

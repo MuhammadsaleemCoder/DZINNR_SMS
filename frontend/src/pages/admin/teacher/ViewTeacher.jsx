@@ -1,10 +1,15 @@
 import React from "react";
 
-function ViewTeacher({ profileData }) {
-  console.log(profileData, "asfjlkj");
+function ViewTeacher({ profileData, setClose }) {
   return (
     <div className="w-[45%] h-[80%]  bg-white absolute z-100 left-1/2   top-1/2 -translate-1/2 rounded border-2 border-zinc-300 p-6 items-center">
-      <h1 className=" font-bold text-2xl py-4">View Teacher Detail</h1>
+      <div className="flex items-center justify-between">
+        <h1 className=" font-bold text-2xl py-4">View Teacher Detail</h1>
+        <button onClick={setClose} className="cursor-pointer">
+          {" "}
+          <i className="fa-solid fa-xmark text-2xl"></i>
+        </button>
+      </div>
       <div className="flex h-full">
         <div className="border border-zinc-300 bg-gray-50 rounded w-[40%]   flex flex-col justify-between items-center  h-[600px] p-8">
           <div>
@@ -83,7 +88,7 @@ function ViewTeacher({ profileData }) {
           <div className="ml-4  rounded bg-zinc-50 border p-4 border-zinc-300 h-[200px] ">
             <div className="flex gap-3">
               <i className="fa-solid fa-user text-amber-600 text-xl "></i>
-              <h2 className="font-bold">Personal Information</h2>
+              <h2 className="font-bold">Professional Information</h2>
             </div>
             <div className="flex">
               <div className="w-[45%] ">

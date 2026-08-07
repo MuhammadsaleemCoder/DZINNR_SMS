@@ -16,7 +16,6 @@ import ClassTeacherCard from "./pages/students/ClassTeacherCard";
 import ClassTeacherSidebar from "./pages/students/ClassTeacherSidebar";
 import StudentSidebar from "./pages/students/StudentSidebar";
 import ClassStudentSidebar from "./pages/students/ClassStudentSidebar";
-import ViewDetails from "./pages/admin/teacher/ViewDetails";
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -32,7 +31,6 @@ const router = createBrowserRouter([
     children: [
       { path: "dashboard", element: <Dashboard /> },
       { path: "teacher", element: <Teacher /> },
-      { path: "teacher/:id", element: <ViewDetails /> },
       { path: "student", element: <TotalStudents /> },
       { path: "classes", element: <Class /> },
     ],

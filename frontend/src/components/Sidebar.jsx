@@ -17,9 +17,9 @@ function Sidebar({ items, role }) {
   };
   return (
     <div className="h-screen w-1/6 border-r border-amber-600 flex flex-col justify-between bg-[#0A0E12] ">
-      <div className="p-2 h-[10%]  ">
-        <div className="flex gap-3 p-4">
-          <img src="/images/logo.png" alt="" className=" w-10" />
+      <div className="p-2 h-[10%] flex  items-center ">
+        <div className="flex gap-3 p-4 items-center  ">
+          <img src="/images/logo.png" alt="" className=" w-10 mb-2" />
           <div>
             <h1 className="text-amber-500 font-bold text-xl">Dzinrr</h1>
             <p className="text-white text-[12px]">School Management System</p>

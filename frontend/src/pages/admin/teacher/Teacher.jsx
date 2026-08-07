@@ -32,12 +32,16 @@ function Teacher() {
   const cancelForm = () => {
     setForm(!true);
   };
-  console.log("adl node ", profileData);
 
   return (
     <div className="sm:block">
       {/* <ViewDetails /> */}
-      {profileData && <ViewTeacher profileData={profileData} name={"asd"} />}
+      {profileData && (
+        <ViewTeacher
+          profileData={profileData}
+          setClose={() => setProfileData(null)}
+        />
+      )}
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}

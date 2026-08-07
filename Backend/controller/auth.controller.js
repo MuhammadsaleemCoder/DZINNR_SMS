@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 export const loginUser = async (req, res) => {
   try {
     const { email, password, role } = req.body;
+    console.log(email, password, role);
     const user = await User.findOne({ email });
     if (!user) {
       return res
@@ -17,6 +18,13 @@ export const loginUser = async (req, res) => {
       return res
         .status(401)
         .json({ success: false, message: "invalid password or email" });
+    }
+
+    if (user.role !== role) {
+      return res.status(403).json({
+        success: false,
+        message: "Select role does not  match your account.",
+      });
     }
 
     const token = jwt.sign(
