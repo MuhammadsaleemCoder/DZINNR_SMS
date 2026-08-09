@@ -7,8 +7,10 @@ import AddButton from "../../../components/AddButton";
 import { useNavigate } from "react-router";
 import EditDetails from "./ViewTeacher";
 import ViewTeacher from "./ViewTeacher";
+import UpdateProfile from "./UpdateProfile";
 function Teacher() {
   const [teacher, setTeacher] = useState([]);
+  const [profileForm, setProfileForm] = useState(null);
   const [form, setForm] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const navigate = useNavigate();
@@ -32,7 +34,6 @@ function Teacher() {
   const cancelForm = () => {
     setForm(!true);
   };
-
   return (
     <div className="sm:block">
       {/* <ViewDetails /> */}
@@ -42,6 +43,16 @@ function Teacher() {
           setClose={() => setProfileData(null)}
         />
       )}
+<<<<<<< HEAD
+=======
+
+      {profileForm && (
+        <UpdateProfile
+          teacher={profileForm}
+          setCancel={() => setProfileForm(null)}
+        />
+      )}
+>>>>>>> feature/teacherProfileView
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}
@@ -122,7 +133,10 @@ function Teacher() {
                     >
                       <i className="fa-regular fa-eye "></i>
                     </button>
-                    <button className="h-9 w-9 rounded-lg border  border-zinc-300">
+                    <button
+                      className="h-9 w-9 rounded-lg border  border-zinc-300"
+                      onClick={() => setProfileForm(val)}
+                    >
                       <i className="fa-regular fa-pen-to-square"></i>
                     </button>
                     <button className="h-9 w-9 rounded-lg border  border-zinc-300">
