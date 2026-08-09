@@ -23,18 +23,7 @@ function CreateTeacherForm() {
   const submitForm = (e) => {
     try {
       e.preventDefault();
-      api.post("/admin/teachers", {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        phone: formData.phone,
-        department: formData.department,
-        subject: formData.subject,
-        qualification: formData.qualification,
-        experience: formData.experience,
-        status: formData.status,
-        img: formData.img,
-      });
+      api.post("/admin/teachers", { formData });
       console.log(formData);
     } catch (error) {
       console.log("issue in creating teacher", error);
@@ -181,17 +170,19 @@ function CreateTeacherForm() {
               <label htmlFor="" className="font-medium ">
                 Teacher Status
               </label>
-              <input
-                type="text"
-                className="border border-slate-400 h-12 rounded-lg w-full px-4 mt-2"
-                placeholder="Teacher Status"
+
+              <select
                 name="status"
+                className="border border-slate-400 h-12 rounded-lg w-full px-4 mt-2"
+                name=""
+                id=""
                 required
                 value={formData.status}
                 onChange={handleForm}
-              />
-              <select name="" id="">
-                <option value="">Active</option>
+              >
+                <option>Select Status</option>
+                <option value={formData.status}>Active</option>
+                <option value={formData.status}>Inactive</option>
               </select>
             </div>
           </div>

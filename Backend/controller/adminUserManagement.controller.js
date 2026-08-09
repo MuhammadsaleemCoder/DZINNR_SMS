@@ -102,7 +102,6 @@ export const createStudent = async (req, res) => {
       admissionDate,
       status,
     } = req.body;
-    console.log(req.body);
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
@@ -133,6 +132,7 @@ export const createStudent = async (req, res) => {
       status,
     });
 
+    console.log(newStudent);
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
@@ -170,5 +170,53 @@ export const singleTeacher = async (req, res) => {
     res.status(200).json({ success: true, teacherId });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const singleProfileUpdate = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const teacher = await Teacher.findById(id);
+
+    const {
+      name,
+      email,
+      phone,
+      department,
+      subject,
+      qualification,
+      experience,
+      status,
+      img,
+    } = req.body;
+
+    if (!teacher) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Teacher Not found" });
+    }
+
+    await User.findByIdAndUpdate(teacher.user, {
+      name,
+      email,
+    });
+
+    const updatedTeacher = await Teacher.findByIdAndUpdate(
+      teacher,
+      { phone, department, subject, qualification, experience, status, img },
+      {
+        returnDocument: "after",
+      },
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Teacher updated successfully",
+      teacher: updatedTeacher,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "server side error", error });
   }
 };

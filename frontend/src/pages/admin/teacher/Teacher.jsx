@@ -7,8 +7,10 @@ import AddButton from "../../../components/AddButton";
 import { useNavigate } from "react-router";
 import EditDetails from "./ViewTeacher";
 import ViewTeacher from "./ViewTeacher";
+import UpdateProfile from "./UpdateProfile";
 function Teacher() {
   const [teacher, setTeacher] = useState([]);
+  const [profileForm, setProfileForm] = useState(null);
   const [form, setForm] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const navigate = useNavigate();
@@ -32,12 +34,23 @@ function Teacher() {
   const cancelForm = () => {
     setForm(!true);
   };
-  console.log("adl node ", profileData);
-
+  console.log(profileForm);
   return (
     <div className="sm:block">
       {/* <ViewDetails /> */}
-      {profileData && <ViewTeacher profileData={profileData} name={"asd"} />}
+      {profileData && (
+        <ViewTeacher
+          profileData={profileData}
+          setClose={() => setProfileData(null)}
+        />
+      )}
+
+      {profileForm && (
+        <UpdateProfile
+          teacher={profileForm}
+          setClose={() => setProfileForm(null)}
+        />
+      )}
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}
@@ -118,7 +131,10 @@ function Teacher() {
                     >
                       <i className="fa-regular fa-eye "></i>
                     </button>
-                    <button className="h-9 w-9 rounded-lg border  border-zinc-300">
+                    <button
+                      className="h-9 w-9 rounded-lg border  border-zinc-300"
+                      onClick={() => setProfileForm(val)}
+                    >
                       <i className="fa-regular fa-pen-to-square"></i>
                     </button>
                     <button className="h-9 w-9 rounded-lg border  border-zinc-300">
