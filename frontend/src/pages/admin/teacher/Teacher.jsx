@@ -43,16 +43,6 @@ function Teacher() {
           setClose={() => setProfileData(null)}
         />
       )}
-<<<<<<< HEAD
-=======
-
-      {profileForm && (
-        <UpdateProfile
-          teacher={profileForm}
-          setCancel={() => setProfileForm(null)}
-        />
-      )}
->>>>>>> feature/teacherProfileView
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}
