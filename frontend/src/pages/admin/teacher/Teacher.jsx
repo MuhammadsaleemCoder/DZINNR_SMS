@@ -43,6 +43,12 @@ function Teacher() {
           setClose={() => setProfileData(null)}
         />
       )}
+      {profileForm && (
+        <UpdateProfile
+          teacher={profileForm}
+          setCancel={() => setProfileForm(null)}
+        />
+      )}
       <AddButton
         button={"Add Teacher"}
         onClick={handleForm}

@@ -83,7 +83,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => selectRoleUser("admin")}
-                className={` ${selectedRole === "Admin" ? "bg-amber-50 border-amber-600" : "border-zinc-300"} flex flex-col justify-center items-center  rounded  border  w-42 h-32 gap-1`}
+                className={` ${selectedRole === "admin" ? "bg-amber-50 border-amber-600" : "border-zinc-300"} flex flex-col justify-center items-center  rounded  border  w-42 h-32 gap-1`}
               >
                 <i className="fa-solid fa-user-tie text-3xl text-amber-600"></i>
                 <p className="font-bold">Admin</p>
@@ -92,7 +92,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => selectRoleUser("teacher")}
-                className={` ${selectedRole === "Teacher" ? "bg-amber-50 border-amber-600" : "border-zinc-300"} flex flex-col justify-center items-center rounded  border  w-42 h-32 gap-1`}
+                className={` ${selectedRole === "teacher" ? "bg-amber-50 border-amber-600" : "border-zinc-300"} flex flex-col justify-center items-center rounded  border  w-42 h-32 gap-1`}
               >
                 <i className="fa-solid fa-person-chalkboard text-3xl text-amber-700"></i>
                 <p className="font-bold">Teacher</p>
@@ -101,7 +101,7 @@ export default function Login() {
               <button
                 type="button"
                 onClick={() => selectRoleUser("student")}
-                className={`${selectedRole == "Student" ? "bg-amber-50 border-amber-600" : "border-gray-300"}
+                className={`${selectedRole == "student" ? "bg-amber-50 border-amber-600" : "border-gray-300"}
                  flex flex-col justify-center items-center  rounded  border w-42 h-32 gap-1  `}
               >
                 <i className="fa-solid fa-user-graduate text-3xl text-amber-700"></i>

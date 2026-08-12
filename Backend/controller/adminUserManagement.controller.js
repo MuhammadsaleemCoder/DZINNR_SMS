@@ -132,7 +132,7 @@ export const createStudent = async (req, res) => {
       status,
     });
 
-    console.log(newStudent);
+    // console.log(newStudent);
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
@@ -178,6 +178,12 @@ export const singleProfileUpdate = async (req, res) => {
     const { id } = req.params;
     const teacher = await Teacher.findById(id);
 
+    if (!teacher) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Teacher Not found" });
+    }
+
     const {
       name,
       email,
@@ -190,24 +196,13 @@ export const singleProfileUpdate = async (req, res) => {
       img,
     } = req.body;
 
-    if (!teacher) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Teacher Not found" });
-    }
-
-    await User.findByIdAndUpdate(teacher.user, {
-      name,
-      email,
-    });
+    await User.findByIdAndUpdate(teacher.user, { name, email });
 
     const updatedTeacher = await Teacher.findByIdAndUpdate(
-      teacher,
+      id,
       { phone, department, subject, qualification, experience, status, img },
-      {
-        returnDocument: "after",
-      },
-    );
+      { returnDocument: "after" },
+    ).populate("user");
 
     res.status(200).json({
       success: true,
@@ -215,8 +210,10 @@ export const singleProfileUpdate = async (req, res) => {
       teacher: updatedTeacher,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ success: false, message: "server side error", error });
+    return res.status(500).json({
+      success: false,
+      message: "server side error",
+      error: error.message,
+    });
   }
 };
