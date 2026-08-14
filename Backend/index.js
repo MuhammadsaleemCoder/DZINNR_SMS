@@ -8,6 +8,7 @@ import adminRouter from "./routes/adminUserManag.route.js";
 import classRouter from "./routes/class.route.js";
 import teacherManagRoute from "./routes/teacherManag.route.js";
 import studentManag from "./routes/studentManag.route.js";
+import feeData from "./routes/fees.route.js";
 import cookieParser from "cookie-parser";
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/admin", classRouter);
+app.use("/api/admin", feeData);
 
 //teacher route
 app.use("/api/teacher", teacherManagRoute);
